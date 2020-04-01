@@ -1,9 +1,9 @@
 const express = require('express');
-const globo =  require('./functions/g1');
+const generalFunction =  require('./functions/generalFunction');
 
 const router = express();
 
-router.get('/', globo.g1);
+router.get('/', generalFunction.index);
 
 // Tornar a variável visivel em outros arquivos
 module.exports = router;
