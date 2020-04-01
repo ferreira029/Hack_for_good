@@ -45,7 +45,7 @@ module.exports = {
                     });
                 });
             });
-            res.send(`<a href="${path.parse('src/data/G19.txt')}" download="G19 Teste.txt">Download</a>`);
+            res.send(`<a href="${path.resolve('src/data/G1.txt')}" download="G19 Teste.txt">Download</a>`);
                   
         } catch (error) {
             alert('No funfo')

@@ -1,6 +1,3 @@
-A epidemia do novo coronavírus já deixou mais de 2 mil mortos. Mas por que este vírus está contaminando tantas pessoas? Abaixo, confira o que se sabe e o que ainda falta esclarecer sobre o coronavírus: 
-O novo vírus é apontado como uma variação da família coronavírus. Os primeiros foram identificados em meados da década de 1960, de acordo com o Ministério da Saúde. 
-O nome do vírus não foi definido pela organização. Temporariamente, recebeu a nomenclatura de 2019-nCoV. 
 A doença provocada pela variação originada na China foi nomeada oficialmente pela Organização Mundial de Saúde (OMS) como COVID-19, em 11 de fevereiro. Ainda não está claro como ocorreu a mutação que permitiu o surgimento do novo vírus. 
 Outras variações mais antigas de coronavírus, como SARS-CoV e MERS-CoV, são conhecidas pelos cientistas. Eles também chegaram aos humanos por contato com animais: gatos, no caso da Sars, e dromedários, no vírus Mers. 
 A OMS emitiu o primeiro alerta para a doença em 31 de dezembro de 2019, depois que autoridades chinesas notificaram casos de uma misteriosa pneumonia na cidade de Wuhan, metrópole chinesa com 11 milhões de habitantes, sétima maior cidade da China e a número 42 do mundo. O tamanho é comparável com a cidade de São Paulo, que tem mais de 12 milhões de habitantes. 
@@ -8,6 +5,7 @@ O surto inicial atingiu pessoas que tiveram alguma associação a um mercado de 
 Ainda não se sabe como se deu a primeira transmissão para humanos. A suspeita é que tenha sido por algum animal silvestre. O tipo de animal e forma como a doença foi transmitida ainda são desconhecidos. Uma hipótese é que o novo vírus esteja associado a animais marinhos. Entretanto, ao menos duas pesquisas apontam outras possibilidades: uma delas cita a cobra e, outra, os morcegos. 
 A maioria dos casos está na China, mas há registros em dezenas de países em 4 continentes. 
 Na China, a doença foi registrada em todas as províncias do país, incluindo o Tibete, a última a registrar casos. A maior parte dos infectados estão na província central de Hubei. 
+A epidemia do novo coronavírus já deixou mais de 2 mil mortos. Mas por que este vírus está contaminando tantas pessoas? Abaixo, confira o que se sabe e o que ainda falta esclarecer sobre o coronavírus: 
 Na China, em 9 de janeiro. Um homem de 61 anos foi a primeira vítima. O paciente foi hospitalizado com dificuldades para respirar e pneumonia grave, e morreu após uma parada cardíaca. Naquele momento, 41 pessoas já haviam se infectado. 
 As pesquisas apontam que a primeira transmissão ocorreu de animal para humano. E depois passou a ocorrer de pessoa para pessoa. O que ainda precisa ser esclarecido, de acordo com o infectologista Leonardo Weissmann, é a capacidade de transmissão. 
 Cientistas do Colégio Imperial de Londres estimaram que a taxa de transmissão do novo coronavírus entre humanos é de duas a três pessoas para cada paciente infectado. O relatório, divulgado em 25 de janeiro, é preliminar e foi feito a partir de modelos computacionais baseados em dados de epidemias anteriores. 
@@ -15,6 +13,8 @@ Outro ponto ainda a esclarecer está relacionado ao perfil dos pacientes. Ao men
 Foram identificados sintomas como febre, tosse, dificuldade em respirar e falta de ar. Em casos mais graves, há registro de pneumonia, insuficiência renal e síndrome respiratória aguda grave. 
 Não se sabe ainda. Alguns vírus, como o da catapora, não voltam a causar a doença novamente após uma primeira infecção. 
 No caso do vírus da zika, por exemplo, o corpo responde e a mesma pessoa não passa a ser afetada novamente, o que gera uma redução natural no número de casos. 
+O novo vírus é apontado como uma variação da família coronavírus. Os primeiros foram identificados em meados da década de 1960, de acordo com o Ministério da Saúde. 
+O nome do vírus não foi definido pela organização. Temporariamente, recebeu a nomenclatura de 2019-nCoV. 
 A ciência ainda precisa estudar se o 2019-nCoV gera uma resposta imune definitiva ou se uma pessoa pode ser infectada mais de uma vez. 
 Ainda não há vacina disponível. A Coalizão de Inovações em Preparação para Epidemias (Cepi) – grupo internacional para o controle de doenças – anunciou um fundo para apoiar três programas de desenvolvimento de vacinas contra o 2019-nCoV, o novo coronavírus. A Rússia também informou que busca uma vacina para o vírus. Um grupo de cientistas americanos anunciou que deve começar a testar as vacinas em três meses. 
 A OMS declarou em 30 de janeiro que os casos do novo coronavírus 2019 n-CoV são uma emergência de saúde pública de interesse internacional, não pelo que ocorre na China, mas pelos registros em outros países. Com isso, uma ação coordenada de combate à doença deverá ser traçada entre diferentes autoridades e governos. 
