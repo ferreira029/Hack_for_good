@@ -1,5 +1,5 @@
 const express = require('express');
-const globo =  require('./functions/g1');
+const globo =  require('./functions/g1.js');
 
 const router = express();
 
