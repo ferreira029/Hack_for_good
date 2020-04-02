@@ -7,11 +7,11 @@ const axios = require('axios');
 module.exports = {
     async index(req, res) {
         try {
-            const response = await axios.get('https://www.googleapis.com/customsearch/v1?key=AIzaSyDBx07X2TQl1TQEQbuDYxm1vGzndK3G7d8&cx=017232608039431587026:2zyvwylqmhq&q=Corona&fields=items(link)');
+            const response = await axios.get('https://www.googleapis.com/customsearch/v1?key=AIzaSyDBx07X2TQl1TQEQbuDYxm1vGzndK3G7d8&cx=017232608039431587026:2zyvwylqmhq&q=Corona%20em%20são%20paulo&fields=items(link)');
             let findContent = '';
             let file = '';
 
-            Object.entries(response.data.items).map(resp => {
+            Object.entries(response.data.items).map(async resp => {
                 console.log(resp[1].link);
 
                 if (resp[1].link.includes('https://www.uol.com.br')) {
@@ -25,7 +25,7 @@ module.exports = {
                     file = 'Saude';
                 }
 
-                request(resp[1].link, function(err, res, body) {
+                await request(resp[1].link, function(err, res, body) {
                     if (err) console.log(`Erro: ${err}`);
                 
                     let $ = cheerio.load(body);
