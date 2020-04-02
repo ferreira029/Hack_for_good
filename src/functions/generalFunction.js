@@ -6,6 +6,11 @@ const axios = require('axios');
 
 module.exports = {
     async index(req, res) {
+
+        const userData = {
+            text: "Coravírus"
+        };
+
         try {
             const response = await axios.get('https://www.googleapis.com/customsearch/v1?key=AIzaSyDBx07X2TQl1TQEQbuDYxm1vGzndK3G7d8&cx=017232608039431587026:2zyvwylqmhq&q=Corona&fields=items(link)');
             let findContent = '';
@@ -35,18 +40,24 @@ module.exports = {
                 
                     $(findContent).each(function() {
                         let content = $(this).find('p').text().trim();
-                
+
                         if(content == "") {
                             return;
                         } else {
+
+                            if (content.indexOf(userData.text)/100 >= 0.6) {
+                                return true;
+                            } else {
+                                return false;
+                            }
+
                             // Criar arquivo de texto
                             fs.appendFile(`${path.resolve(`src/data/${file}${resp[0]}.txt`)}`, `${content} \n`, () => { return;});
                         }
                     });
                 });
             });
-            res.send(`<a href="${path.resolve('src/data/G1.txt')}" download="G19 Teste.txt">Download</a>`);
-                  
+            res.send(`<a href="${path.resolve('src/data/G1.txt')}" download="G19 Teste.txt">Download</a>`);       
         } catch (error) {
             alert('No funfo')
         }
