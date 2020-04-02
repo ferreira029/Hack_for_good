@@ -8,6 +8,11 @@ const axios = require('axios');
 // Deixando a chamada "estática"
 module.exports = {
     async index(req, res) {
+
+        const userData = {
+            text: "Coravírus"
+        };
+
         try {
             // Faz a pequisa na API do google que retorna o JSON com os links
             const response = await axios.get('https://www.googleapis.com/customsearch/v1?key=AIzaSyDBx07X2TQl1TQEQbuDYxm1vGzndK3G7d8&cx=017232608039431587026:2zyvwylqmhq&q=Corona%20em%20são%20paulo&fields=items(link)');
@@ -42,7 +47,7 @@ module.exports = {
                     // Pega o conteudo dos 'p' das páginas
                     $(findContent).each(function() {
                         let content = $(this).find('p').text().trim();
-                
+
                         if(content == "") {
                             return;
                         } else {
