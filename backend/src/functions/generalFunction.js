@@ -12,12 +12,11 @@ module.exports = {
         };
 
         try {
-            const response = await axios.get('https://www.googleapis.com/customsearch/v1?key=AIzaSyDBx07X2TQl1TQEQbuDYxm1vGzndK3G7d8&cx=017232608039431587026:2zyvwylqmhq&q=Corona&fields=items(link)');
+            const response = await axios.get('https://www.googleapis.com/customsearch/v1?key=AIzaSyDBx07X2TQl1TQEQbuDYxm1vGzndK3G7d8&cx=017232608039431587026:2zyvwylqmhq&q=Corona&fields=items(link)').catch(err => console.log(`API DO GOOGLE NÃO FUNCIONA, ${err}`));
             let findContent = '';
             let file = '';
 
             Object.entries(response.data.items).map(resp => {
-                console.log(resp[1].link);
 
                 if (resp[1].link.includes('https://www.uol.com.br')) {
                     findContent = 'div.text';
@@ -59,7 +58,7 @@ module.exports = {
             });
             res.send(`<a href="${path.resolve('src/data/G1.txt')}" download="G19 Teste.txt">Download</a>`);       
         } catch (error) {
-            alert('No funfo')
+            console.log('No funfo');
         }
     },
 }
