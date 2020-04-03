@@ -12,7 +12,7 @@ module.exports = {
         };
 
         try {
-            const response = await axios.get('https://www.googleapis.com/customsearch/v1?key=AIzaSyDBx07X2TQl1TQEQbuDYxm1vGzndK3G7d8&cx=017232608039431587026:2zyvwylqmhq&q=Corona&fields=items(link)').catch(err => console.log(`API DO GOOGLE NÃO FUNCIONA, ${err}`));
+            const response = await axios.get('https://www.googleapis.com/customsearch/v1?key=AIzaSyDECtd0EdDZv3Tr85q8Vv7i-126gHSiOQI&cx=017364834723098479907:hiqtvhyt05s&q=Corona&fields=items(link)').catch(err => console.log(`API DO GOOGLE NÃO FUNCIONA, ${err}`));
             let findContent = '';
             let file = '';
 
