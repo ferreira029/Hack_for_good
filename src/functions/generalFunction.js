@@ -13,12 +13,12 @@ module.exports = {
     async index(req, res) {
 
         const userData = {
-            text: "O novo agente do coronavírus foi descoberto em 31/12/19 após casos registrados na China teste".toUpperCase(),
+            text: "na China, onde foram registrados os primeiros casos da covid-19".toUpperCase(),
             search: "afojfoafpwqpwkqpofwnfqpwf wfssfas fs´mafpqf Corona em são paUlo nasnfonfa ijoasf-afs".toUpperCase()
         };
 
         try {
-            let search = "corona ministerio da saude";
+            let search = "casos de corona virus em sao paulo uol";
             // Faz a pequisa na API do google que retorna o JSON com os links
             const response = await axios.get(`https://www.googleapis.com/customsearch/v1/siterestrict?key=AIzaSyDECtd0EdDZv3Tr85q8Vv7i-126gHSiOQI&cx=017232608039431587026:2zyvwylqmhq&q=${search}&fields=items(link)`).catch(err => console.log(`API DO GOOGLE NÃO FUNCIONA, ${err}`));
             let findContent = '';
@@ -45,9 +45,6 @@ module.exports = {
                     if (err) console.log(`Erro: ${err}`);
 
                     let $ = cheerio.load(body);
-
-                    // Apaga o arquivo de texto
-                    //fs.truncate(`${path.resolve(`src/data/${file}${resp[0]}.txt`)}`, () => { return; });
 
                     // Pega o conteudo dos 'p' das páginas
                     $(findContent).each(function () {
@@ -78,7 +75,7 @@ module.exports = {
 
                                         // Pega a palavra de posição [j] da pesquisa
                                         let strF = arrayUser[j];
-                                        //console.log(strF);
+
                                         // Corta a pesquisa novamente com o a ultima palavra da pesquisa
                                         position2 = cut.search(strF);
 
@@ -99,41 +96,23 @@ module.exports = {
                                             } else {
                                                 return false;
                                             } */
-                                            if(percent > 60) {
-                                            percent > 60 ? console.log("\nSite pesquisado: " + resp[1].link + "\nO que foi procurado:" + arrayUser[i] +
-                                            "\nA posição da procura é: " + position + " no contetudo" + 
-                                                `\nConteudo: ${content}\nInformação: ${final}\nA pesquisa: "${userData.text}" é ${percent}% verídica`): false;
+                                            if (percent > 60) {
+                                                console.log("\nSite pesquisado: " + resp[1].link + "\nO que foi procurado:" + arrayUser[i] +
+                                                    "\nA posição da procura é: " + position + " no contetudo" +
+                                                    `\nConteudo: ${content}\nInformação: ${final}\nA pesquisa: "${userData.text}" é ${percent}% verídica`);
                                                 return true;
                                             }
-                                            
-                                            /* percent > 60 ? position2 = -2 : false;
-                                            console.log("Position2: " + position2); */
                                         }
-                                        /* percent > 60 ? j = -1 : false;
-                                        console.log("j: " + j); */
                                     }
-                                    /* percent > 60 ? position = -2 : false;
-                                    console.log("Position: " + position2); */
                                 }
-                                /* percent > 60 ? i = arrayUser.length+1 : false;
-                                console.log("i: " + i); */
-                                // Ver em qual posição do texto está a pesquisa
-                                //console.log(`${arrayUser[i]} está na posição: ${userData.pesq.search(arrayUser[i])} do texto`);
                             }
-                            // Criar arquivo de texto
-                            //fs.appendFile(`${path.resolve(`../data/${file}${resp[0]}.txt`)}`, `${content} \n`, () => { return;});
                         }
                     });
                 });
             });
-            // Coloca no site local o botão de download
-            res.send(`<a href="${path.resolve('../data/G1.txt')}" download="G19 Teste.txt">A porcentagem de igualdade entre os textos é de ${percent}%</a>`);
-            //res.send(`<a href="${path.resolve('src/data/G1.txt')}" download="G19 Teste.txt">Download</a>`);
-            //document.write(`<p>A porcentagem de igualdade entre os textos é de ${porcent}%`)
 
         } catch (error) {
             console.log(error);
         }
     },
 }
-
