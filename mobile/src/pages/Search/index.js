@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Modal, Image } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons, Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 import api from './../../service/api';
@@ -88,27 +88,54 @@ const Search = () => {
 
       { data.Error ? /* Modal Error */
       <View style={style.centeredView}>
-        <Modal
-          animationType="fade"
-          transparent={true}
-          visible={modalValidate}
-          onRequestClose={() => {}}
-        >
-          <View style={style.centeredView}>
-            <View style={style.modalView}>
-              <View style={style.headerModal}>
-                <MaterialIcons name="help" size={20} />
-                <Text style={style.textModal}>Erro</Text>
-                <Text onPress={() => {setModalValidate(!modalValidate)}}><MaterialIcons name="close" size={20} /></Text>
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalValidate}
+        onRequestClose={() => {}}
+      >
+        <View style={style.centeredView}>
+          <View style={style.modalView}>
+            <View style={style.headerModal}>
+              <MaterialIcons style={{color: "#F84949"}} name="cancel" size={32} />
+              <Text style={style.titleModal}>A notícia é <Text style={style.textBold}>falsa</Text>.</Text>
+            </View>
+            <View style={style.bodyModal}>
+              <Text style={style.textModal}><Text style={style.textBold}>Compartilhe o app Verify para ajudar a acabar com as Fake News!</Text> #CompartilheaVerdade #VerifyApp</Text>
+            </View>
+            <View style={style.viewFont}>
+              <MaterialIcons name="remove-red-eye" size={20} />
+              <Text style={style.textLinks}>Ver fontes consultadas</Text>
+            </View>
+            <View style={style.viewLinks}>
+              <Text style={style.textLinks}> https://g1.globo.com/ | https://uol.com.br/ | https://saude.gov.br </Text>
+            </View>
+            <View style={style.viewFont}>
+              <MaterialIcons name="share" size={20} />
+              <Text style={style.textLinks}>Compartilhar</Text>
+            </View>
+            <View style={style.viewIcons}>
+              <View style={{justifyContent: "center", alignItems: "center", width: 90}}>
+                <Feather style={{color: "#525252", marginLeft: 30}} name="message-circle" size={32} />
+                <Text style={style.textIcons}>Whatsapp</Text>
               </View>
-              <View>
-                <Text style={style.textInput}>{ data.Error }</Text>
+              <View style={{justifyContent: "center", alignItems: "center", width: 90}}>
+                <Feather style={{color: "#525252", marginLeft: 30}} name="send" size={32} />
+                <Text style={style.textIcons}>Telegram</Text>
+              </View>
+              <View style={{justifyContent: "center", alignItems: "center", width: 90}}>
+                <Feather style={{color: "#525252", marginLeft: 30}} name="mail" size={32} />
+                <Text style={style.textIcons}>E-mail</Text>
               </View>
             </View>
+            <TouchableOpacity onPress={() => {setModalValidate(!modalValidate)}} style={style.buttonModalConfirm}>
+              <Text style={style.textButton}>NOVA PESQUISA</Text>
+            </TouchableOpacity>
           </View>
-        </Modal>
-      </View>
-      :/* Modal Logout */
+        </View>
+      </Modal>
+    </View>
+      :/* Modal Approve */
       <View style={style.centeredView}>
         <Modal
           animationType="fade"
@@ -119,14 +146,40 @@ const Search = () => {
           <View style={style.centeredView}>
             <View style={style.modalView}>
               <View style={style.headerModal}>
-                <MaterialIcons name="help" size={20} />
-                <Text style={style.textModal}>Ajuda</Text>
-                <Text onPress={() => {setModalValidate(!modalValidate)}}><MaterialIcons name="close" size={20} /></Text>
+                <MaterialIcons style={style.textIcon} name="check-circle" size={32} />
+                <Text style={style.titleModal}>A notícia é <Text style={style.textBold}>verdadeira</Text>.</Text>
               </View>
-                <Text style={style.textInput}>{ data.Site }</Text>
-                <TouchableOpacity onPress={() => {setModalValidate(!modalValidate)}} style={style.buttonModalConfirm}>
-                  <Text style={style.textButton}>NOVA PESQUISA</Text>
-                </TouchableOpacity>
+              <View style={style.bodyModal}>
+                <Text style={style.textModal}><Text style={style.textBold}>Lavar as mãos por 20 segundos previne Coronavírus.</Text> #CompartilheaVerdade #VerifyApp</Text>
+              </View>
+              <View style={style.viewFont}>
+                <MaterialIcons name="remove-red-eye" size={20} />
+                <Text style={style.textLinks}>Ver fontes consultadas</Text>
+              </View>
+              <View style={style.viewLinks}>
+                <Text style={style.textLinks}> {data.Site} </Text>
+              </View>
+              <View style={style.viewFont}>
+                <MaterialIcons name="share" size={20} />
+                <Text style={style.textLinks}>Compartilhar</Text>
+              </View>
+              <View style={style.viewIcons}>
+                <View style={{justifyContent: "center", alignItems: "center", width: 90}}>
+                  <Feather style={{color: "#525252", marginLeft: 30}} name="message-circle" size={32} />
+                  <Text style={style.textIcons}>Whatsapp</Text>
+                </View>
+                <View style={{justifyContent: "center", alignItems: "center", width: 90}}>
+                  <Feather style={{color: "#525252", marginLeft: 30}} name="send" size={32} />
+                  <Text style={style.textIcons}>Telegram</Text>
+                </View>
+                <View style={{justifyContent: "center", alignItems: "center", width: 90}}>
+                  <Feather style={{color: "#525252", marginLeft: 30}} name="mail" size={32} />
+                  <Text style={style.textIcons}>E-mail</Text>
+                </View>
+              </View>
+              <TouchableOpacity onPress={() => {setModalValidate(!modalValidate)}} style={style.buttonModalConfirm}>
+                <Text style={style.textButton}>NOVA PESQUISA</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </Modal>

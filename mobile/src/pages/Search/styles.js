@@ -32,6 +32,41 @@ export default StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 20,
   },
+  titleModal: {
+    fontFamily: "Roboto",
+    fontStyle: 'normal',
+    fontSize: 24,
+    color: "#525252",
+    lineHeight: 28,
+    width: 150,
+    marginLeft: 30,
+    marginBottom: 30,
+  },
+  textLinks: {
+    color: "#525252",
+    fontSize: 12,
+    lineHeight: 14,
+    fontFamily: "Roboto",
+    marginLeft: 5,
+  },
+  textIcons: {
+    color: "#525252",
+    fontSize: 12,
+    lineHeight: 14,
+    fontFamily: "Roboto",
+    marginLeft: 20,
+    marginTop: 5,
+  },
+  textModal: {
+    marginTop: 20,
+    marginBottom: 20,
+    fontFamily: "Roboto",
+    fontSize: 16,
+    lineHeight: 24,
+  },
+  textBold: {
+    fontWeight: "bold"
+  },
   textButton: {
     fontSize: 16,
     color: "#fff",
@@ -43,6 +78,10 @@ export default StyleSheet.create({
     lineHeight: 24,
     marginTop: 5,
     fontFamily: "Roboto",
+  },
+  textIcon: {
+    color: "#6EC844",
+    marginBottom: 16,
   },
   input: {
     backgroundColor: "#FBFAF9",
@@ -82,6 +121,25 @@ export default StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
+  viewIcons: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20
+  },
+  viewFont: {
+    flexDirection: "row",
+    width: 240,
+    justifyContent: "flex-start",
+    alignItems: "center",
+    marginTop: 10,
+  },
+  viewLinks: {
+    backgroundColor: "rgba(229, 229, 229, 0.5)",
+    borderRadius: 5,
+    width: "100%",
+    marginTop: 10,
+  },
   textStyle: {
     color: "white",
     fontWeight: "bold",
@@ -96,17 +154,16 @@ export default StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
+    width: '100%',
   },
-  titleModal: {
-    fontFamily: "Roboto",
-    fontSize: 24,
-    color: "#3D0C89",
-    lineHeight: 28,
-    marginTop: 20
-  },
-  textModal: {
-    marginLeft: 80,
-    marginRight: 80
+  bodyModal: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    borderTopColor: 'rgba(0, 0, 0, 0.5)',
+    borderTopWidth: 1,
+    borderBottomColor: 'rgba(0, 0, 0, 0.5)',
+    borderBottomWidth: 1,
   },
   buttonModalConfirm: {
     width: 200,
