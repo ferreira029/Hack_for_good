@@ -10,11 +10,12 @@ let percent = -2;
 // Deixando a chamada "estática"
 module.exports = {
     async index(req, res) {
+        const text = req.body.search; 
 
-        const userData = {
+        /* const userData = {
             text: "O caso ainda não foi contabilizado pela Secretaria Estadual e pelo Ministério da Saúde".toUpperCase(),
             search: "afojfoafpwqpwkqpofwnfqpwf wfssfas fs´mafpqf Corona em são paUlo nasnfonfa ijoasf-afs".toUpperCase()
-        };
+        }; */
 
         try {
             
@@ -58,7 +59,8 @@ module.exports = {
                             return;
                         } else {
                             // Cria/preenche o conteudo
-                            let arrayUser = userData.text.split(" ");
+                            /* let arrayUser = userData.text.split(" "); */
+                            let arrayUser = text.split(" ");
 
                             for (i = 0; i < arrayUser.length; i++) {
                                 let position;
@@ -82,11 +84,12 @@ module.exports = {
                                             position2 += strF.length; // Adiciona o tamanho da palavra para ela não sumir no resultado
                                             // Retorna o texto cortado com a ultima palavra da pesquisa
                                             let final = cut.slice(0, position2);
-                                            percent = levenshtein.levenshtein(userData.text.toUpperCase(), final.toUpperCase());
+                                            /* percent = levenshtein.levenshtein(userData.text.toUpperCase(), final.toUpperCase()); */
+                                            percent = levenshtein.levenshtein(text.toUpperCase(), final.toUpperCase());
 
                                             // Apresenta a resposta se a porcentagem de veracidade da pesquisa for maior que 60%
                                             if (percent > 75) {
-                                                msg = await `{"Site": "${resp[1].link}", "Conteudo": "${content}", "Informacao":" ${final}", "Pesquisa": "${userData.text}", "Porcentagem": "${percent}"}`;
+                                                msg = await `{"Site": "${resp[1].link}", "Conteudo": "${content}", "Informacao":" ${final}", "Pesquisa": "${text}", "Porcentagem": "${percent}"}`;
                                                 global.responseMsg = JSON.parse(msg);
                                                 return true;
                                             }
