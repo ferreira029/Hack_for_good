@@ -6,8 +6,7 @@ const path = require('path');
 const axios = require('axios');
 const levenshtein = require('./levenshtein');
 
-let percent;
-
+let percent = -2;
 // Deixando a chamada "estática"
 module.exports = {
     async index(req, res) {
@@ -17,12 +16,16 @@ module.exports = {
             search: "afojfoafpwqpwkqpofwnfqpwf wfssfas fs´mafpqf Corona em são paUlo nasnfonfa ijoasf-afs".toUpperCase()
         };
 
-        const msg = {};
-
         try {
+            
             let search = "corona virus";
+
+            if (percent < 75) {
+                global.responseMsg = { "Error": "A mensagem falsa" };
+            }
+            
             // Faz a pequisa na API do google que retorna o JSON com os links
-            const response = await axios.get(`https://www.googleapis.com/customsearch/v1/siterestrict?key=AIzaSyDECtd0EdDZv3Tr85q8Vv7i-126gHSiOQI&cx=017232608039431587026:2zyvwylqmhq&q=${search}&fields=items(link)`).catch(err => console.log(`API DO GOOGLE NÃO FUNCIONA, ${err}`));
+            const response = await axios.get(`https://www.googleapis.com/customsearch/v1?key=AIzaSyDECtd0EdDZv3Tr85q8Vv7i-126gHSiOQI&cx=017232608039431587026:2zyvwylqmhq&q=${search}&fields=items(link)`).catch(err => console.log(`API DO GOOGLE NÃO FUNCIONA, ${err}`));
             let findContent = '';
             //let file = '';
 
@@ -82,17 +85,9 @@ module.exports = {
                                             percent = levenshtein.levenshtein(userData.text.toUpperCase(), final.toUpperCase());
 
                                             // Apresenta a resposta se a porcentagem de veracidade da pesquisa for maior que 60%
-                                            if (percent > 60) {
-                                                msg = {
-                                                    "Site": `${resp[1].link}`,
-                                                    "Procurado": `${arrayUser[i]}`,
-                                                    "Posição": `${position}`,
-                                                    "Conteudo": `${content}`,
-                                                    "Informação": `${final}`,
-                                                    "A pesquisa": `${userData.text}`,
-                                                    "Porcentagem": `${percent}`
-                                                }
-                                                console.log(msg);
+                                            if (percent > 75) {
+                                                msg = await `{"Site": "${resp[1].link}", "Conteudo": "${content}", "Informacao":" ${final}", "Pesquisa": "${userData.text}", "Porcentagem": "${percent}"}`;
+                                                global.responseMsg = JSON.parse(msg);
                                                 return true;
                                             }
                                         }
@@ -103,7 +98,7 @@ module.exports = {
                     });
                 });
             });
-            res.json(msg);
+            res.json(global.responseMsg);
         } catch (error) {
             console.log(error);
         }
