@@ -1,21 +1,31 @@
 {
-  "name": "site",
-  "version": "1.0.0",
-  "description": "",
-  "main": "g1.js",
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject"
+  },
   "dependencies": {
+    "@expo/vector-icons": "^10.0.0",
+    "@react-native-community/masked-view": "^0.1.7",
+    "@react-navigation/native": "^5.1.4",
+    "@react-navigation/stack": "^5.2.9",
     "axios": "^0.19.2",
-    "cheerio": "^1.0.0-rc.3",
-    "express": "^4.17.1",
-    "googlediff": "^0.1.0",
-    "request": "^2.88.2"
+    "expo": "~37.0.3",
+    "intl": "^1.2.5",
+    "react": "~16.9.0",
+    "react-dom": "~16.9.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.0.tar.gz",
+    "react-native-gesture-handler": "^1.6.1",
+    "react-native-safe-area-context": "^0.7.3",
+    "react-native-screens": "^2.4.0",
+    "react-native-web": "~0.11.7"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "@babel/core": "^7.8.6",
+    "babel-preset-expo": "~8.1.0"
   },
-  "scripts": {
-    "start": "nodemon src/server.js"
-  },
-  "author": "",
-  "license": "ISC"
+  "private": true
 }
