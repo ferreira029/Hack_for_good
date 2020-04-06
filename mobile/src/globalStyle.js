@@ -83,6 +83,9 @@ export default StyleSheet.create({
     color: "#6EC844",
     marginBottom: 16,
   },
+  content: {
+    marginTop: 5
+  },
   input: {
     backgroundColor: "#FBFAF9",
     borderRadius: 5,
@@ -98,6 +101,15 @@ export default StyleSheet.create({
     width: "80%",
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 30
+  },
+  buttonRegister: {
+    backgroundColor: "#C4C4C4",
+    borderRadius: 8,
+    width: "80%",
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: 20,
     marginTop: 30
   },
   centeredView: {
@@ -129,21 +141,22 @@ export default StyleSheet.create({
   },
   viewFont: {
     flexDirection: "row",
-    width: 240,
+    width: "100%",
     justifyContent: "flex-start",
     alignItems: "center",
     marginTop: 10,
   },
+  viewButton: {
+    width: "80%",
+    flexDirection: "row",
+
+  },
   viewLinks: {
     backgroundColor: "rgba(229, 229, 229, 0.5)",
+    padding: 20,
     borderRadius: 5,
     width: "100%",
     marginTop: 10,
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
   },
   modalText: {
     fontSize: 16,
@@ -164,26 +177,5 @@ export default StyleSheet.create({
     borderTopWidth: 1,
     borderBottomColor: 'rgba(0, 0, 0, 0.5)',
     borderBottomWidth: 1,
-  },
-  buttonModalConfirm: {
-    width: 200,
-    padding: 20,
-    marginTop: 20,
-    justifyContent: "center",
-    alignItems: "center",
-    height: 53,
-    backgroundColor: "#00BC00",
-    borderRadius: 8,
-  },
-  buttonModalCancel: {
-    width: 200,
-    padding: 20,
-    marginTop: 20,
-    justifyContent: "center",
-    alignItems: "center",
-    height: 53,
-    backgroundColor: "#C4C4C4",
-    borderRadius: 8,
-  },
+  }
 });
-
