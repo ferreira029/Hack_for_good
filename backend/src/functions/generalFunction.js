@@ -6,27 +6,35 @@ const levenshtein = require('./levenshtein');
 let percent = -2;
 let textData = '';
 let text = '';
+let key1 = "AIzaSyBqd6HmCZG15A-x4vqxI-cxK29bQKdxJMg";
+let key2 = "AIzaSyDrujxVHMbEnYFQ1SG_zDiBNVpBJ7yKYDw";
+let key3 = "AIzaSyDECtd0EdDZv3Tr85q8Vv7i-126gHSiOQI";
+let key4 = "AIzaSyCC1KVerxYxXWeHwCDUsegjz3ipVp58dW4";
+let test;
+
 
 module.exports = {
     async index(req, res) {
-        textData = `${req.body.data}`;
+        textData = `Isso aqui definitivamente esta errado`;
         if (!textData) {
             global.responseMsg = { "empty": "O campo de texto está vazio!" };
-            console.log("Ta no 1º");
-            console.log(global.responseMsg);
             res.json(global.responseMsg);
             return;
         }
         text = textData.toUpperCase();
         try {
-            var response = await axios.get(`https://www.googleapis.com/customsearch/v1/siterestrict?key=AIzaSyDrujxVHMbEnYFQ1SG_zDiBNVpBJ7yKYDw&cx=017232608039431587026:2zyvwylqmhq&q=${textData} corona virus&fields=items(link)`).catch(err => global.responseMsg = { "Error": `API DO GOOGLE NÃO FUNCIONA, ${err}` });
-            console.log(global.responseMsg);
+            var response = await axios.get(`https://www.googleapis.com/customsearch/v1/siterestrict?key=${key1}&cx=017232608039431587026:2zyvwylqmhq&q=${textData} corona virus&fields=items(link)`).catch(err => test = "Erro");
+            if(test == "Erro") {
+                response = await axios.get(`https://www.googleapis.com/customsearch/v1/siterestrict?key=${key2}&cx=017232608039431587026:2zyvwylqmhq&q=${textData} corona virus&fields=items(link)`).catch(err => test = "Erro2");
+            }
+            if(test == "Erro2") {
+                response = await axios.get(`https://www.googleapis.com/customsearch/v1/siterestrict?key=${key3}&cx=017232608039431587026:2zyvwylqmhq&q=${textData} corona virus&fields=items(link)`).catch(err => test = "Erro3");
+            }
+            if(test == "Erro3") {
+                response = await axios.get(`https://www.googleapis.com/customsearch/v1/siterestrict?key=${key4}&cx=017232608039431587026:2zyvwylqmhq&q=${textData} corona virus&fields=items(link)`).catch(err => global.responseMsg = { "Error": `API DO GOOGLE NÃO FUNCIONA, ${err}` });
+            }
+
             try {
-                if (!response.data) {
-                    console.log(global.responseMsg);
-                    res.json(global.responseMsg);
-                    return;
-                }
                 Object.entries(response.data.items).map(async resp => {
                     if (resp[1].link.includes('https://www.uol.com.br')) {
                         findContent = 'div.text';
@@ -46,7 +54,6 @@ module.exports = {
                             if (content == "") {
                                 return;
                             } else {
-                                console.log(global.responseMsg);
                                 if (global.responseMsg == "") {
                                 }
                                 let arrayUser = text.split(" ");
@@ -78,20 +85,13 @@ module.exports = {
                         });
                     });
                 });
-                console.log("Ta no 3º");
-                console.log(global.responseMsg);
                 res.json(global.responseMsg);
             } catch (error) {
-                console.log("Ta no 4º");
                 global.responseMsg = { "error": "A pesquisa não retornou resutados" };
-                console.log(global.responseMsg);
                 res.json(global.responseMsg);
             }
         } catch (error) {
-            console.log(error);
             global.responseMsg = { "faild": "Falha na conexão" };
-            console.log("Ta no 5º");
-            console.log(global.responseMsg);
             res.json(global.responseMsg);
         }
     },
