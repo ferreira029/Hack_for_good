@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Modal, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Modal, Image, Linking } from 'react-native';
 import { MaterialIcons, Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import * as MailComposer from 'expo-mail-composer';
 
 import api from './../../service/api';
 import imgLogo from './../../assets/logo_purple.png';
@@ -24,6 +25,22 @@ const Search = () => {
   function handleLogout() {
     navigation.navigate('Home');
   }
+
+  /* const sendMail = () => {
+    MailComposer.composeAsync({
+        subject: `Verify -  #CompartilheaVerdade #VerifyApp`,
+        recipients: [`${incident.email}`],
+        body: message
+    })
+  } */
+
+  function sendWhatsApp(message) {
+    Linking.openURL(`whatsapp://send?phone=+5511940854030&text=${message}`);
+  }
+
+  function sendTelegram(message) {
+    Linking.openURL(`telegram://send?phone=+5511940854030&text=${message}`);
+}
 
   async function handleSearch(search) {
     try {
@@ -116,12 +133,16 @@ const Search = () => {
             </View>
             <View style={style.viewIcons}>
               <View style={{justifyContent: "center", alignItems: "center", width: 90}}>
-                <Feather style={{color: "#525252", marginLeft: 30}} name="message-circle" size={32} />
-                <Text style={style.textIcons}>Whatsapp</Text>
+                <TouchableOpacity onPress={() => {sendWhatsApp(`Sua mensagem foi validada com sucesso, infelizmente é uma FakeNews!`)}}>
+                  <Feather style={{color: "#525252", marginLeft: 30}} name="message-circle" size={32} />
+                  <Text style={style.textIcons}>Whatsapp</Text>
+                </TouchableOpacity>
               </View>
               <View style={{justifyContent: "center", alignItems: "center", width: 90}}>
-                <Feather style={{color: "#525252", marginLeft: 30}} name="send" size={32} />
-                <Text style={style.textIcons}>Telegram</Text>
+                <TouchableOpacity onPress={() => {sendTelegram(`Sua mensagem foi validada com sucesso, infelizmente é uma FakeNews!`)}}>
+                  <Feather style={{color: "#525252", marginLeft: 30}} name="send" size={32} />
+                  <Text style={style.textIcons}>Telegram</Text>
+                </TouchableOpacity>
               </View>
               <View style={{justifyContent: "center", alignItems: "center", width: 90}}>
                 <Feather style={{color: "#525252", marginLeft: 30}} name="mail" size={32} />
@@ -165,16 +186,22 @@ const Search = () => {
               </View>
               <View style={style.viewIcons}>
                 <View style={{justifyContent: "center", alignItems: "center", width: 90}}>
-                  <Feather style={{color: "#525252", marginLeft: 30}} name="message-circle" size={32} />
-                  <Text style={style.textIcons}>Whatsapp</Text>
+                  <TouchableOpacity onPress={() => {sendWhatsApp(`Sua mensagem foi validada com sucesso, pode ficar despreocupado, não é uma FakeNews!\n ${data.Conteudo}`)}}>
+                    <Feather style={{color: "#525252", marginLeft: 30}} name="message-circle" size={32} />
+                    <Text style={style.textIcons}>Whatsapp</Text>
+                  </TouchableOpacity>
                 </View>
                 <View style={{justifyContent: "center", alignItems: "center", width: 90}}>
-                  <Feather style={{color: "#525252", marginLeft: 30}} name="send" size={32} />
-                  <Text style={style.textIcons}>Telegram</Text>
+                  <TouchableOpacity onPress={() => {sendTelegram(`Sua mensagem foi validada com sucesso, pode ficar despreocupado, não é uma FakeNews!\n ${data.Conteudo}`)}}>
+                    <Feather style={{color: "#525252", marginLeft: 30}} name="send" size={32} />
+                    <Text style={style.textIcons}>Telegram</Text>
+                  </TouchableOpacity>
                 </View>
                 <View style={{justifyContent: "center", alignItems: "center", width: 90}}>
-                  <Feather style={{color: "#525252", marginLeft: 30}} name="mail" size={32} />
-                  <Text style={style.textIcons}>E-mail</Text>
+                  <TouchableOpacity onPress={() => {}}>
+                    <Feather style={{color: "#525252", marginLeft: 30}} name="mail" size={32} />
+                    <Text style={style.textIcons}>E-mail</Text>
+                  </TouchableOpacity>
                 </View>
               </View>
               <TouchableOpacity onPress={() => {setModalValidate(!modalValidate)}} style={style.buttonModalConfirm}>
