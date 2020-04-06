@@ -64,7 +64,7 @@ const Search = () => {
       <View style={style.body}>
         <View style={style.containerInputs}>
           <Text style={style.title}>Olá, Mariana</Text>
-          <Text style={style.textInput}>Valide seu texto/link</Text>
+          <Text style={style.textInput}>Valide seu texto</Text>
           <TextInput
             multiline={true}
             numberOfLines={6}
