@@ -5,6 +5,10 @@ const loginController = require('./controllers/loginController');
 
 const router = express();
 
+router.get('/', (req, res) => {
+  res.send('Verify App');
+});
+
 router.post('/search', generalFunction.index);
 
 router.post('/users', userController.create);
