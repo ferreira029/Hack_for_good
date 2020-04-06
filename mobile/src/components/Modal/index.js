@@ -86,11 +86,4 @@ const ModalComponent = (props) => {
   );
 }
 
-const mapStateToProps = store => ({
-  visibleHelp: store.modalState.visibleHelp
-});
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ clickButton }, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(ModalComponent);
+export default ModalComponent;

@@ -90,7 +90,7 @@ const Register = () => {
                 <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={style.buttonValidate}>
                   <Text style={style.textButton}>VOLTAR</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => {setModalVisible(!modalVisible);  navigation.navigate('Register')}} style={style.buttonRegister}>
+                <TouchableOpacity onPress={() => {setModalVisible(!modalVisible);  navigation.navigate('Register')}} style={style.buttonCancel}>
                   <Text style={style.textButton}>CADASTRAR</Text>
                 </TouchableOpacity>
               </View>

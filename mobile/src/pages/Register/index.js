@@ -3,9 +3,6 @@ import { View, Text, TextInput, TouchableOpacity, Image, Modal } from 'react-nat
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import api from './../../service/api';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { clickButton } from './../../redux/action';
 
 import imgLogo from './../../assets/logo_purple.png';
 import style from './../../globalStyle';
@@ -19,8 +16,6 @@ const Register = (props) => {
   const [data, setData] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [modalSuccess, setModalSuccess] = useState(false);
-
-  const { clickButton, visibleHelp } = props;
 
   function goBack() {
     navigation.goBack();
@@ -115,13 +110,6 @@ const Register = (props) => {
               <View>
                 <Text style={style.text}> { data.success } </Text>
               </View>
-              <View style={style.viewFont}>
-                <MaterialIcons name="remove-red-eye" size={20} />
-                <Text style={style.textLinks}>Fontes confiáveis</Text>
-              </View>
-              <View style={style.viewLinks}>
-                <Text style={style.textLinks}> https://g1.globo.com/ | https://uol.com.br/ | https://saude.gov.br </Text>
-              </View>
               <TouchableOpacity onPress={handleLogin} style={style.buttonValidate}>
                 <Text style={style.textButton}>FAZER LOGIN</Text>
               </TouchableOpacity>
@@ -133,11 +121,4 @@ const Register = (props) => {
   );
 }
 
-const mapStateToProps = store => ({
-  visibleHelp: store.modalState.visibleHelp
-});
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ clickButton }, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default Register;

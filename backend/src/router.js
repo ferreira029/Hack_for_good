@@ -6,7 +6,7 @@ const loginController = require('./controllers/loginController');
 const router = express();
 
 router.get('/', (req, res) => {
-  res.send('Verify App');
+  res.sendFile('public/index.html' , { root : `${__dirname}/../`});
 });
 
 router.post('/search', generalFunction.index);

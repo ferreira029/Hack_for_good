@@ -103,14 +103,15 @@ export default StyleSheet.create({
     alignItems: "center",
     marginTop: 30
   },
-  buttonRegister: {
+  buttonCancel: {
     backgroundColor: "#C4C4C4",
     borderRadius: 8,
+    padding: 20,
     width: "80%",
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 30,
     marginLeft: 20,
-    marginTop: 30
   },
   centeredView: {
     flex: 1,
@@ -147,9 +148,9 @@ export default StyleSheet.create({
     marginTop: 10,
   },
   viewButton: {
-    width: "80%",
+    width: "70%",
     flexDirection: "row",
-
+    justifyContent: "space-between",
   },
   viewLinks: {
     backgroundColor: "rgba(229, 229, 229, 0.5)",

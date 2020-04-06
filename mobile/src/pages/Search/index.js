@@ -21,10 +21,6 @@ const Search = () => {
   const [modalLogout, setModalLogout] = useState(false);
   const [modalValidate, setModalValidate] = useState(false);
 
-  function goBack() {
-    navigation.goBack();
-  }
-
   function handleLogout() {
     navigation.navigate('Home');
   }
@@ -48,20 +44,19 @@ const Search = () => {
   async function handleSearch(search) {
     try {
       const response = await api.post('search', { data: search });
-      console.log(response.data);
-      await setData(response.data);
+      setData(response.data);
       setModalValidate(true);
     } catch (error) {
-      console.log(error);
+      setData('\nDesculpe a conexão falhou :(\n Tente novamente mais tarde!\n');
+      setModalHelp(true);
     }
   }
 
   return(
     <View style={style.container}>
       <View style={style.header}>
-        <Text onPress={goBack}><MaterialIcons name="arrow-back" size={20} /></Text>
         <Image source={imgLogo} style={style.logo} />
-        <Text onPress={() => {setModalHelp(true)}}><MaterialIcons name="help" size={20} /></Text>
+        <Text onPress={() => {setData(''); setModalHelp(true)}}><MaterialIcons name="help" size={20} /></Text>
         <Text onPress={() => {setModalLogout(true)}}><MaterialIcons name="close" size={20} /></Text>
       </View>
       <View style={style.body}>
@@ -81,31 +76,6 @@ const Search = () => {
         </TouchableOpacity>
       </View>
 
-      <View style={style.centeredView}>
-        <Modal
-          animationType="fade"
-          transparent={true}
-          visible={modalHelp}
-          onRequestClose={() => {}}
-        >
-          <View style={style.centeredView}>
-            <View style={style.modalView}>
-              <View style={style.headerModal}>
-                <MaterialIcons name="help" size={20} />
-                <Text style={style.textModal}>Ajuda</Text>
-                <Text onPress={() => {setModalHelp(!modalHelp)}}><MaterialIcons name="close" size={20} /></Text>
-              </View>
-              <View>
-                <Text style={style.titleModal}>Instrução:</Text>
-                <Text style={style.textInput}>1- Insira seu link ou texto no campo abaixo;</Text>
-                <Text style={style.textInput}>2- Clique no botão Validar;</Text>
-                <Text style={style.textInput}>OBS.: O campo vai ser validado automáticamente pelo nosso robozinho de pesquisa, agora é só esperar e seu texto será validado.</Text>
-              </View>
-            </View>
-          </View>
-        </Modal>
-      </View>
-
       { data.empty
       ? /* Modal Empty */
       <View style={style.centeredView}>
@@ -123,13 +93,6 @@ const Search = () => {
               </View>
               <View style={style.bodyModal}>
                 <Text style={style.textModal}><Text style={style.textBold}>Compartilhe o app Verify para ajudar a acabar com as Fake News!</Text> #CompartilheaVerdade #VerifyApp</Text>
-              </View>
-              <View style={style.viewFont}>
-                <MaterialIcons name="remove-red-eye" size={20} />
-                <Text style={style.textLinks}>Ver fontes consultadas</Text>
-              </View>
-              <View style={style.viewLinks}>
-                <Text style={style.textLinks}> https://g1.globo.com/ | https://uol.com.br/ | https://saude.gov.br </Text>
               </View>
               <TouchableOpacity onPress={() => {setModalValidate(!modalValidate)}} style={style.buttonValidate}>
                 <Text style={style.textButton}>NOVA PESQUISA</Text>
@@ -212,13 +175,6 @@ const Search = () => {
               <View style={style.bodyModal}>
                 <Text style={style.textModal}><Text style={style.textBold}>Compartilhe o app Verify para ajudar a acabar com as Fake News!</Text> #CompartilheaVerdade #VerifyApp</Text>
               </View>
-              <View style={style.viewFont}>
-                <MaterialIcons name="remove-red-eye" size={20} />
-                <Text style={style.textLinks}>Ver fontes consultadas</Text>
-              </View>
-              <View style={style.viewLinks}>
-                <Text style={style.textLinks}> https://g1.globo.com/ | https://uol.com.br/ | https://saude.gov.br </Text>
-              </View>
               <TouchableOpacity onPress={() => {setModalValidate(!modalValidate)}} style={style.buttonValidate}>
                 <Text style={style.textButton}>NOVA PESQUISA</Text>
               </TouchableOpacity>
@@ -243,13 +199,6 @@ const Search = () => {
               </View>
               <View style={style.bodyModal}>
                 <Text style={style.textModal}><Text style={style.textBold}>Compartilhe o app Verify para ajudar a acabar com as Fake News!</Text> #CompartilheaVerdade #VerifyApp</Text>
-              </View>
-              <View style={style.viewFont}>
-                <MaterialIcons name="remove-red-eye" size={20} />
-                <Text style={style.textLinks}>Ver fontes consultadas</Text>
-              </View>
-              <View style={style.viewLinks}>
-                <Text style={style.textLinks}> https://g1.globo.com/ | https://uol.com.br/ | https://saude.gov.br </Text>
               </View>
               <TouchableOpacity onPress={() => {setModalValidate(!modalValidate)}} style={style.buttonValidate}>
                 <Text style={style.textButton}>NOVA PESQUISA</Text>
@@ -331,13 +280,6 @@ const Search = () => {
               <View style={style.bodyModal}>
                 <Text style={style.textModal}><Text style={style.textBold}>Compartilhe o app Verify para ajudar a acabar com as Fake News!</Text> #CompartilheaVerdade #VerifyApp</Text>
               </View>
-              <View style={style.viewFont}>
-                <MaterialIcons name="remove-red-eye" size={20} />
-                <Text style={style.textLinks}>Ver fontes consultadas</Text>
-              </View>
-              <View style={style.viewLinks}>
-                <Text style={style.textLinks}> https://g1.globo.com/ | https://uol.com.br/ | https://saude.gov.br </Text>
-              </View>
               <TouchableOpacity onPress={() => {setModalValidate(!modalValidate)}} style={style.buttonValidate}>
                 <Text style={style.textButton}>NOVA PESQUISA</Text>
               </TouchableOpacity>
@@ -346,6 +288,64 @@ const Search = () => {
         </Modal>
       </View>
     }
+      {/* Modal Logout */}
+      <View style={style.centeredView}>
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={modalLogout}
+          onRequestClose={() => {}}
+        >
+          <View style={style.centeredView}>
+            <View style={style.modalView}>
+              <View style={style.headerModal}>
+                <Text style={style.title}>Deseja mesmo sair?</Text>
+              </View>
+              <View style={style.bodyModal}>
+                <Text style={style.textModal}><Text style={style.textBold}>Compartilhe o app Verify para ajudar a acabar com as Fake News!</Text> #CompartilheaVerdade #VerifyApp</Text>
+              </View>
+              <View style={style.viewButton}>
+                <TouchableOpacity onPress={handleLogout} style={style.buttonValidate}>
+                  <Text style={style.textButton}>SIM</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => {setModalLogout(!modalLogout)}} style={style.buttonCancel}>
+                  <Text style={style.textButton}>NÃO</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Modal>
+      </View>
+      {/* Modal Help */}
+      <View style={style.centeredView}>
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={modalHelp}
+          onRequestClose={() => {}}
+        >
+          <View style={style.centeredView}>
+            <View style={style.modalView}>
+              <View style={style.headerModal}>
+                <MaterialIcons style={{color: "#525252", marginBottom: 18}} name="help" size={32} />
+                <Text style={style.titleModal}>Precisa de ajuda?</Text>
+              </View>
+              <View style={style.bodyModal}>
+                <Text style={style.textModal}><Text style={style.textBold}>Compartilhe o app Verify para ajudar a acabar com as Fake News!</Text> #CompartilheaVerdade #VerifyApp</Text>
+              </View>
+              <View style={style.content}>
+              <Text style={style.text}> { data ? data : ''} </Text>
+                <Text style={style.text}>1- Coloque seu Nome e Número de Whatsapp;</Text>
+                <Text style={style.text}>2- Clique no botão cadastrar;</Text>
+                <Text style={style.text}>OBS.: Seus dados vão ser salvos, para que possamos te avisar e encaminhar a mensagem para seu whatsapp para ficar mais dinâmico.</Text>
+              </View>
+              <TouchableOpacity onPress={() => setModalHelp(!modalHelp)} style={style.buttonValidate}>
+                <Text style={style.textButton}>VOLTAR</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+      </View>
     </View>
   );
 }
