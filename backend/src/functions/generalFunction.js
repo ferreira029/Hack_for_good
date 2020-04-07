@@ -24,14 +24,24 @@ module.exports = {
         text = textData.toUpperCase();
         try {
             var response = await axios.get(`https://www.googleapis.com/customsearch/v1/siterestrict?key=${key1}&cx=017232608039431587026:2zyvwylqmhq&q=${textData} corona virus&fields=items(link)`).catch(err => test = "Erro");
-            if(test == "Erro") {
+            if(test === "Erro") {
                 response = await axios.get(`https://www.googleapis.com/customsearch/v1/siterestrict?key=${key2}&cx=017232608039431587026:2zyvwylqmhq&q=${textData} corona virus&fields=items(link)`).catch(err => test = "Erro2");
             }
-            if(test == "Erro2") {
+            if(test === "Erro2") {
                 response = await axios.get(`https://www.googleapis.com/customsearch/v1/siterestrict?key=${key3}&cx=017232608039431587026:2zyvwylqmhq&q=${textData} corona virus&fields=items(link)`).catch(err => test = "Erro3");
             }
-            if(test == "Erro3") {
+            if(test === "Erro3") {
                 response = await axios.get(`https://www.googleapis.com/customsearch/v1/siterestrict?key=${key4}&cx=017232608039431587026:2zyvwylqmhq&q=${textData} corona virus&fields=items(link)`).catch(err => global.responseMsg = { "Error": `API DO GOOGLE NÃO FUNCIONA, ${err}` });
+            }
+
+            if (!response.data) {
+                global.responseMsg = { "error": "A pesquisa não retornou resutados" };
+                return res.json(global.responseMsg);
+            }
+
+            if (response.Error) {
+                global.responseMsg = response.Error;
+                return res.json(global.responseMsg);
             }
 
             try {
@@ -48,10 +58,10 @@ module.exports = {
                         let $ = cheerio.load(body);
                         $(findContent).each(async function () {
                             let content = $(this).find('p').text().trim().toUpperCase();
-                            if (content == "") {
+                            if (content === "") {
                                 return;
                             } else {
-                                if (global.responseMsg == "") {
+                                if (global.responseMsg === "") {
                                 }
                                 let arrayUser = text.split(" ");
                                 for (i = 0; i < arrayUser.length; i++) {
@@ -71,7 +81,7 @@ module.exports = {
                                                     msg = await `{"site": "${resp[1].link}", "conteudo": "${content}", "informacao":" ${final}", "pesquisa": "${text}", "porcentagem": "${percent}"}`;
                                                     return global.responseMsg = JSON.parse(msg);
                                     
-                                                } else if (global.responseMsg == undefined) {
+                                                } else if (global.responseMsg === undefined) {
                                                     return global.responseMsg = { "fake": "A mensagem aparentemente é falsa, pois é menor return do que 70% de certeza" };
                                                 }
                                             }
@@ -86,7 +96,6 @@ module.exports = {
             } catch (error) {
                 global.responseMsg = { "error": "A pesquisa não retornou resutados" };
                 return res.json(global.responseMsg);
-
             }
         } catch (error) {
             global.responseMsg = { "failed": "Falha na conexão" };
